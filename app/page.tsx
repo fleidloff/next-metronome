@@ -1,9 +1,8 @@
-import { Button, TextInput } from "flowbite-react";
+import Metronome from "./components/Metronome";
 
 export default function Home() {
-  return <>
-    <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    <Button>play</Button>
-    <TextInput type="number"></TextInput>
-  </>;
+  return <div className="p-8 space-y-4">
+    <h1 className="text-3xl font-bold underline">next metronome</h1>
+    <Metronome />
+  </div>;
 }
