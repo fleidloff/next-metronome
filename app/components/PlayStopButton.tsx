@@ -3,18 +3,14 @@
 import { Button } from "flowbite-react";
 import { useState } from "react";
 import { IoPlay, IoStop } from "react-icons/io5";
+import useMetronomeStore from "../stores/metronomeStore"
 
-export default function PlayStopButton({ onChange }) {
-  const [ stopped, setStopped ] = useState<boolean>(true);
-
-  const onClick = () => {
-    const newState = !stopped;
-    setStopped(newState);
-    onChange({ playing: !newState, stopped: newState });
-  }
+export default function PlayStopButton() {
+  const stopped = useMetronomeStore((state) => state.stopped)
+  const toggleStopped = useMetronomeStore((state) => state.toggleStopped)
 
   return <>
-    <Button size="lg" onClick={onClick}> 
+    <Button size="lg" onClick={toggleStopped}> 
       {stopped ? 
         <IoPlay className="m-2 h-5 w-5" /> :
         <IoStop className="m-2 h-5 w-5" />
