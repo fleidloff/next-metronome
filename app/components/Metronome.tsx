@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import BPM from "./BPM";
 import PlayStopButton from "./PlayStopButton";
 import useMetronomeStore from "../stores/metronomeStore"
