@@ -1,6 +1,8 @@
 'use client'
 
 import { Button } from "flowbite-react";
+const TypedButton = Button as unknown as React.FC<any>; // Hacky workaround
+
 import { IoPlay, IoStop } from "react-icons/io5";
 import useMetronomeStore from "../stores/metronomeStore"
 
@@ -9,11 +11,11 @@ export default function PlayStopButton() {
   const toggleStopped = useMetronomeStore((state) => state.toggleStopped)
 
   return <>
-    <Button size="lg" onClick={toggleStopped}>
+    <TypedButton size="lg" onClick={toggleStopped}>
       {stopped ?
         <IoPlay className="m-2 h-5 w-5" /> :
         <IoStop className="m-2 h-5 w-5" />
       }
-    </Button>
+    </TypedButton>
   </>;
 }
