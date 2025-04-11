@@ -1,6 +1,8 @@
+"use client";
+
 const click = () => {
   // Create the audio context
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  const audioContext = new window.AudioContext();
 
   // create an oscillator
   const osc = audioContext.createOscillator();

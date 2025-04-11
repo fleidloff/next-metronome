@@ -1,4 +1,3 @@
-import { NodejsRequestData } from "next/dist/server/web/types";
 import { click } from "@/lib/sound";
 
 let playing = false;
@@ -29,7 +28,9 @@ const run = () => {
   }, 1000 * (60 / bpm));
 };
 
-export default {
+const metronome = {
   setBpm,
   setPlaying,
 };
+
+export default metronome;
