@@ -1,6 +1,6 @@
 'use client'
 
-import { TextInput } from "flowbite-react";
+import { TextInput } from "./basic";
 import { TbMetronome } from "react-icons/tb";
 import useMetronomeStore from "../stores/metronomeStore"
 
