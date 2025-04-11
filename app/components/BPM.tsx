@@ -1,6 +1,6 @@
 'use client'
 
-import { TextInput } from "./basic";
+import { TextInput } from "./basic/components";
 import { TbMetronome } from "react-icons/tb";
 import useMetronomeStore from "../stores/metronomeStore"
 
