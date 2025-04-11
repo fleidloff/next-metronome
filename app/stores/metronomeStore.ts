@@ -1,6 +1,13 @@
 import { create } from 'zustand'
 
-const useMetronomeStore = create((set) => ({
+interface MetronomeState {
+    bpm: number | ''
+    setBpm: (newValue: number | '') => void
+    stopped: boolean
+    toggleStopped: () => void
+}
+
+const useMetronomeStore = create<MetronomeState>((set) => ({
   bpm: 120,
   setBpm: (newValue) => set({ bpm: newValue }),
   stopped: true,

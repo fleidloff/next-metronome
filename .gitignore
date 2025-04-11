@@ -53,6 +53,8 @@ web_modules/
 
 .idea/
 
+.vscode/
+
 # Optional eslint cache
 .eslintcache
 
