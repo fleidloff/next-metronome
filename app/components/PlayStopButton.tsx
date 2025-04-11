@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from "flowbite-react";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const TypedButton = Button as unknown as React.FC<any>; // Hacky workaround
 
 import { IoPlay, IoStop } from "react-icons/io5";
