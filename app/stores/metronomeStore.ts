@@ -1,10 +1,10 @@
-import { create } from 'zustand'
+import { create } from "zustand";
 
 interface MetronomeState {
-    bpm: number | ''
-    setBpm: (newValue: number | '') => void
-    stopped: boolean
-    toggleStopped: () => void
+  bpm: number | "";
+  setBpm: (newValue: number | "") => void;
+  stopped: boolean;
+  toggleStopped: () => void;
 }
 
 const useMetronomeStore = create<MetronomeState>((set) => ({
@@ -12,6 +12,6 @@ const useMetronomeStore = create<MetronomeState>((set) => ({
   setBpm: (newValue) => set({ bpm: newValue }),
   stopped: true,
   toggleStopped: () => set((state) => ({ stopped: !state.stopped })),
-}))
+}));
 
 export default useMetronomeStore;
