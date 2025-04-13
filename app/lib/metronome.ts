@@ -2,30 +2,53 @@ import { click } from "@/lib/sound";
 
 let playing = false;
 let bpm = 120;
-let intervalID: NodeJS.Timeout;
+const calculateTimeBetweenClicks = () => 60 / bpm;
+let timeBetweenClicks = calculateTimeBetweenClicks();
+let timeoutID: NodeJS.Timeout;
+let nextClick = 0;
+let clickStart = 0;
+let clicked = 0;
+let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
 const setBpm = (newBpm: number) => {
   bpm = newBpm;
-  if (playing) {
-    run();
-  }
+  timeBetweenClicks = calculateTimeBetweenClicks();
 };
+
 const setPlaying = (isPlaying: boolean) => {
   playing = isPlaying;
 
   if (playing) {
     run();
   } else {
-    clearInterval(intervalID);
+    clearTimeout(timeoutID);
   }
 };
 
+const triggerNext = () => {
+  if (!playing) {
+    return;
+  }
+
+  click(nextClick, audioContext);
+  clicked += 1;
+  nextClick = clickStart + clicked * timeBetweenClicks;
+
+  timeoutID = setTimeout(
+    triggerNext,
+    Math.floor((nextClick - audioContext.currentTime) * 1000)
+  );
+};
+
 const run = () => {
-  clearInterval(intervalID);
-  intervalID = setInterval(() => {
-    console.log("click");
-    click();
-  }, 1000 * (60 / bpm));
+  clearTimeout(timeoutID);
+  clicked = 0;
+  const time = audioContext.currentTime;
+
+  clickStart = time + 0.1;
+  nextClick = clickStart + timeBetweenClicks;
+
+  triggerNext();
 };
 
 const metronome = {

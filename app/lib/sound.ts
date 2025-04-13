@@ -1,9 +1,7 @@
 "use client";
 
-const click = () => {
-  // Create the audio context
-  const audioContext = new window.AudioContext();
-
+const click = (time: number, audioContext: AudioContext) => {
+  console.log("click");
   // create an oscillator
   const osc = audioContext.createOscillator();
 
@@ -14,8 +12,8 @@ const click = () => {
   osc.connect(audioContext.destination);
 
   // Start the oscilator in 1 second and stop after a short time
-  osc.start(audioContext.currentTime + 0);
-  osc.stop(audioContext.currentTime + 0.03);
+  osc.start(time + 0);
+  osc.stop(time + 0.03);
 };
 
 export { click };
