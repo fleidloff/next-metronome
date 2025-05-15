@@ -11,6 +11,7 @@ let clicked = 0;
 let clicks = [1, 1, 1, 1];
 let audioContext = null;
 if (typeof window !== "undefined") {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
 }
 
