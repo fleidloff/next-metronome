@@ -11,7 +11,7 @@ let clicked = 0;
 let clicks = [1, 1, 1, 1];
 let audioContext = null;
 if (typeof window !== "undefined") {
-  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
 }
 
 const setBpm = (newBpm: number) => {
