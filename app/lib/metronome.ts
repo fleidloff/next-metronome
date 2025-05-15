@@ -39,7 +39,7 @@ const triggerNext = () => {
   }
 
   clicked += 1;
-  console.log("click for beat", clicked);
+  //console.log("click for beat", clicked);
   if (clicks[clicked - 1] === 1) {
     click(nextClick, audioContext!);
   }
