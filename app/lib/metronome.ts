@@ -20,7 +20,7 @@ const setBpm = (newBpm: number) => {
   timeBetweenClicks = calculateTimeBetweenClicks();
 };
 
-const setClicks = (newClicks: Array) => {
+const setClicks = (newClicks: Array<number>) => {
   clicks = newClicks;
 };
 
