@@ -8,11 +8,19 @@ let timeoutID: NodeJS.Timeout;
 let nextClick = 0;
 let clickStart = 0;
 let clicked = 0;
-const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+let clicks = [1, 1, 1, 1];
+let audioContext = null;
+if (typeof window !== "undefined") {
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+}
 
 const setBpm = (newBpm: number) => {
   bpm = newBpm;
   timeBetweenClicks = calculateTimeBetweenClicks();
+};
+
+const setClicks = (newClicks: Array) => {
+  clicks = newClicks;
 };
 
 const setPlaying = (isPlaying: boolean) => {
@@ -30,20 +38,27 @@ const triggerNext = () => {
     return;
   }
 
-  click(nextClick, audioContext);
   clicked += 1;
+  console.log("click for beat", clicked);
+  if (clicks[clicked - 1] === 1) {
+    click(nextClick, audioContext!);
+  }
   nextClick = clickStart + clicked * timeBetweenClicks;
+  if (clicked >= clicks.length) {
+    clickStart = nextClick;
+    clicked = 0;
+  }
 
   timeoutID = setTimeout(
     triggerNext,
-    Math.floor((nextClick - audioContext.currentTime) * 1000)
+    Math.floor((nextClick - audioContext!.currentTime) * 1000)
   );
 };
 
 const run = () => {
   clearTimeout(timeoutID);
   clicked = 0;
-  const time = audioContext.currentTime;
+  const time = audioContext!.currentTime;
 
   clickStart = time + 0.1;
   nextClick = clickStart + timeBetweenClicks;
@@ -54,6 +69,7 @@ const run = () => {
 const metronome = {
   setBpm,
   setPlaying,
+  setClicks
 };
 
 export default metronome;
