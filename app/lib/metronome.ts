@@ -8,7 +8,7 @@ let timeoutID: NodeJS.Timeout;
 let nextClick = 0;
 let clickStart = 0;
 let clicked = 0;
-let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
 const setBpm = (newBpm: number) => {
   bpm = newBpm;
